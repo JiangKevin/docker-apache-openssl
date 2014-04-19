@@ -1,6 +1,6 @@
 # docker-apache-openssl
 
-Docker image for testing SSLCipherSuite option with httpd + openssl.
+Docker image for testing `SSLCipherSuite` option with httpd + openssl.
 
 ## What is installed
 
@@ -10,8 +10,12 @@ Docker image for testing SSLCipherSuite option with httpd + openssl.
 
 ## Usage
 
-	$ docker run -p 8443:443 -d shawnzhu/apache-openssl
+    $ docker run -p 8443:443 -d shawnzhu/apache-openssl
 
 Or with custom `SSLCipherSuite` in `/etc/httpd/conf.d/mod_ssl.conf`:
 
     $ docker run -p 8443:443 -e HTTPD_SSL_CIPHER_SUITE="ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM:+LOW" -d shawnzhu/apache-openssl
+
+Then you should be able to connect to the web server over port `8443`:
+
+    $ curl -k https://localhost:8443/
